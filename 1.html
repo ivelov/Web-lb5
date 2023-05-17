@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <table>
+      <thead>
+        <td>№_</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+      </thead>
+      <tbody id="res"></tbody>
+    </table>
+    <br />
+    <label for="i1">FirstName</label><br />
+    <input id="i1" type="text" /><br />
+    <label for="i2">LastName</label><br />
+    <input id="i2" type="text" /><br /><br />
+    <button onclick="add()">Add</button>
+    <script>
+      let members = [];
+      const i1 = document.getElementById("i1");
+      const i2 = document.getElementById("i2");
+      const res = document.getElementById("res");
+
+      function add() {
+        members.push({
+          firstname: i1.value,
+          lastname: i2.value,
+        });
+        render();
+      }
+
+      function render() {
+        let rowsHtml = "";
+        for (let i = 0; i < members.length; i++) {
+          rowsHtml += `<tr><td>${i + 1}</td><td>${
+            members[i].firstname
+          }</td><td>${members[i].lastname}</td></tr>`;
+        }
+        document.getElementById("res").innerHTML = rowsHtml;
+      }
+    </script>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td {
+        padding: 2px 5px;
+      }
+    </style>
+  </body>
+</html>
