@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div style="display: flex">
+      <textarea name="" id="i1" cols="30" rows="10"></textarea>
+      <table id="res"></table>
+    </div>
+    <button onclick="create()">Create</button>
+    <script>
+      const i1 = document.getElementById("i1");
+      const res = document.getElementById("res");
+
+      function create() {
+        let inputVal = i1.value;
+        let rowsVal = inputVal.split("\n");
+        let rowsHtml = "";
+        for (let i = 0; i < rowsVal.length; i++) {
+          let values = rowsVal[i].split("");
+          rowsHtml += "<tr>";
+          for (let j = 0; j < values.length; j++) {
+            if (values[j] === "0") {
+              rowsHtml += '<td class="white"></td>';
+            } else if (values[j] === "1") {
+              rowsHtml += '<td class="black"></td>';
+            }
+          }
+          rowsHtml += "</tr>";
+        }
+        document.getElementById("res").innerHTML = rowsHtml;
+      }
+    </script>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      td {
+        width: 50px;
+        height: 50px;
+      }
+      .black {
+        background-color: black;
+      }
+    </style>
+  </body>
+</html>
