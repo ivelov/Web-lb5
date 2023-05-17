@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div style="display: flex">
+      <table>
+        <tr>
+          <td id="t1" style="background-color: brown"></td>
+          <td id="t2" style="background-color: red"></td>
+          <td id="t3" style="background-color: orange"></td>
+        </tr>
+        <tr>
+          <td id="t4" style="background-color: yellow"></td>
+          <td id="t5" style="background-color: greenyellow"></td>
+          <td id="t6" style="background-color: green"></td>
+        </tr>
+        <tr>
+          <td id="t7" style="background-color: lightblue"></td>
+          <td id="t8" style="background-color: blue"></td>
+          <td id="t9" style="background-color: darkblue"></td>
+        </tr>
+      </table>
+      <div id="res"></div>
+    </div>
+    <script>
+      const colors = [
+        {
+          color: "brown",
+          active: false,
+        },
+        {
+          color: "red",
+          active: false,
+        },
+        {
+          color: "orange",
+          active: false,
+        },
+        {
+          color: "yellow",
+          active: false,
+        },
+        {
+          color: "greenyellow",
+          active: false,
+        },
+        {
+          color: "green",
+          active: false,
+        },
+        {
+          color: "lightblue",
+          active: false,
+        },
+        {
+          color: "blue",
+          active: false,
+        },
+        {
+          color: "darkblue",
+          active: false,
+        },
+      ];
+      const res = document.getElementById("res");
+
+      function getCallback(index) {
+        return () => {
+          colors[index].active = !colors[index].active;
+          render();
+        };
+      }
+      function render() {
+        let gradients = "";
+        let count = 0;
+        for (let i = 0; i < colors.length; i++) {
+          if (colors[i].active) {
+            count++;
+            if (gradients) {
+              gradients += "," + colors[i].color;
+            } else {
+              gradients += colors[i].color;
+            }
+          }
+        }
+
+        if (count < 2) {
+          res.style.backgroundImage = `none`;
+          res.style.backgroundColor = count === 0 ? "black" : gradients;
+        } else {
+          res.style.backgroundImage = `linear-gradient(${gradients})`;
+        }
+      }
+
+      const tds = document.querySelectorAll("td");
+
+      for (let i = 0; i < tds.length; i++) {
+        tds[i].addEventListener("click", getCallback(i));
+      }
+    </script>
+    <style>
+      td {
+        width: 50px;
+        height: 50px;
+      }
+      .active {
+        border: 3px solid black;
+      }
+      #res {
+        width: 200px;
+        height: 100px;
+        background-color: black;
+      }
+    </style>
+  </body>
+</html>
