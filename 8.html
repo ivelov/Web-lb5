@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div id="result"></div>
+    <h1 style="text-align: center;">Add comment</h1>
+    <table>
+      <tr>
+        <td>
+          <label for="i1">Name:</label>
+        </td>
+        <td style="width: 100%;">
+          <input type="text" id="i1" style="width: 100%"/>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="i2">Comment:</label>
+        </td>
+        <td style="width: 100%;">
+          <textarea  id="i2" cols="3" rows="3" style="width: 100%;"></textarea>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <button onclick="add()" style="margin: auto; width: 100%;">Send</button>
+    <script>
+      function add() {
+        results.push({
+          name:i1.value,
+          comment:i2.value,
+          date: new Date()
+        })
+
+        render();
+      }
+
+      function render() {
+        let resHtml = '';
+        for (let i = 0; i < results.length; i++) {
+          resHtml += `<div class="result-div"><div class="flex">
+            <span>${results[i].name}</span>
+            <span>${results[i].date}</span></div>
+            <p class="comment">${results[i].comment}</p></div>`
+          
+        }
+        resDiv.innerHTML = resHtml;
+      }
+
+      let results = [];
+      const i1 = document.getElementById('i1');
+      const i2 = document.getElementById('i2');
+      const resDiv = document.getElementById('result');
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .result-div{
+        width: 100%;
+      }
+      .result-div p{
+        margin: 0 0 10px 0;
+      }
+      .flex{
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid black;
+      }
+      .comment{
+        border: 1px solid black;
+      }
+    </style>
+  </body>
+</html>
