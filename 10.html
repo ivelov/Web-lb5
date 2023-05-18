@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div id="scene">
+      <button>Click</button>
+    </div>
+    <script>
+      function run(e) {
+        let sceneRect = scene.getBoundingClientRect();
+        let btnRect = btn.getBoundingClientRect();
+        let mouseX = event.pageX - event.currentTarget.offsetLeft;
+        let mouseY = event.pageY - event.currentTarget.offsetTop;
+        let newX = 0;
+        let newY = 0;
+
+        for (let i = 0; i < 100; i++) {
+          newX = Math.random() * (sceneRect.width - btnRect.width);
+          newY = Math.random() * (sceneRect.height - btnRect.height);
+          if (
+            mouseX >= newX &&
+            mouseX <= newX + btnRect.width &&
+            mouseY >= newY &&
+            mouseY <= newY + btnRect.height
+          ) {
+          } else {
+            break;
+          }
+        }
+        btn.style.top = newY + "px";
+        btn.style.left = newX + "px";
+      }
+      let scene = document.getElementById("scene");
+      let btn = document.querySelector("button");
+      btn.addEventListener("mouseenter", run);
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      #scene {
+        position: relative;
+        margin: auto;
+        width: 500px;
+        height: 300px;
+        border: 1px solid black;
+      }
+      button {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+      }
+    </style>
+  </body>
+</html>
