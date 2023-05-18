@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div class="scene">
+      <div class="card">
+        <div class="card__face card__face--front"></div>
+        <div
+          class="card__face card__face--back"
+          style="
+            background-image: url('https://opengameart.org/sites/default/files/styles/medium/public/king_of_hearts2.png');
+          "
+        ></div>
+      </div>
+      <div class="card">
+        <div class="card__face card__face--front"></div>
+        <div
+          class="card__face card__face--back"
+          style="
+            background-image: url('https://opengameart.org/sites/default/files/styles/medium/public/queen_of_diamonds2.png');
+          "
+        ></div>
+      </div>
+      <div class="card">
+        <div class="card__face card__face--front"></div>
+        <div
+          class="card__face card__face--back"
+          style="
+            background-image: url('https://opengameart.org/sites/default/files/styles/medium/public/7_of_clubs.png');
+          "
+        ></div>
+      </div>
+    </div>
+
+    <script>
+      function getCallback(index) {
+        return () => {
+          cards[index].classList.toggle("is-flipped");
+        }
+      }
+      let cards = document.querySelectorAll(".card");
+      for (let i = 0; i < cards.length; i++) {
+        cards[i].addEventListener("click", getCallback(i));
+      }
+    </script>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      .scene {
+        display: flex;
+        perspective: 600px;
+      }
+      .card {
+        width: 200px;
+        height: 260px;
+        margin-right: 10px;
+        position: relative;
+        transition: transform 1s;
+        transform-style: preserve-3d;
+      }
+      .card__face {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        backface-visibility: hidden;
+        background-size: cover;
+      }
+      .card__face--front {
+        background-image: url("https://i.pinimg.com/originals/0e/5f/f1/0e5ff160c652d000ebb409a754653d23.jpg");
+      }
+
+      .card__face--back {
+        transform: rotateY(180deg);
+      }
+      .card.is-flipped {
+        transform: rotateY(180deg);
+      }
+    </style>
+  </body>
+</html>
