@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <section>
+      <div style="display: flex;">
+        <button onclick="del(event)">Delete</button>
+        <button onclick="edit(event)">Edit</button>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tellus tellus, vehicula vel interdum ut, mattis eget elit. Aenean ullamcorper aliquam tempus. Maecenas at nisi vitae ipsum sagittis feugiat non et libero. Fusce sodales leo id dui condimentum, sit amet viverra tellus elementum. Aliquam facilisis dictum metus. Sed faucibus odio sit amet massa ullamcorper fringilla. Vestibulum viverra congue pulvinar. Ut quam arcu, pellentesque congue commodo ut, tincidunt id mauris.</p>
+        <textarea class="d-none" cols="30" rows="3"></textarea>
+    </section>
+    <section>
+      <div style="display: flex;">
+        <button onclick="del(event)">Delete</button>
+        <button onclick="edit(event)">Edit</button>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tellus tellus, vehicula vel interdum ut, mattis eget elit. Aenean ullamcorper aliquam tempus. Maecenas at nisi vitae ipsum sagittis feugiat non et libero. Fusce sodales leo id dui condimentum, sit amet viverra tellus elementum. Aliquam facilisis dictum metus. Sed faucibus odio sit amet massa ullamcorper fringilla. Vestibulum viverra congue pulvinar. Ut quam arcu, pellentesque congue commodo ut, tincidunt id mauris.</p>
+        <textarea class="d-none" cols="30" rows="3"></textarea>
+    </section>
+    <section>
+      <div style="display: flex;">
+        <button onclick="del(event)">Delete</button>
+        <button onclick="edit(event)">Edit</button>
+      </div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tellus tellus, vehicula vel interdum ut, mattis eget elit. Aenean ullamcorper aliquam tempus. Maecenas at nisi vitae ipsum sagittis feugiat non et libero. Fusce sodales leo id dui condimentum, sit amet viverra tellus elementum. Aliquam facilisis dictum metus. Sed faucibus odio sit amet massa ullamcorper fringilla. Vestibulum viverra congue pulvinar. Ut quam arcu, pellentesque congue commodo ut, tincidunt id mauris.</p>
+        <textarea class="d-none" cols="30" rows="3"></textarea>
+    </section>
+    <script>
+      function del(event) {
+        event.target.parentNode.parentNode.parentNode.removeChild(event.target.parentNode.parentNode);
+      }
+
+      function edit(event) {
+        let p = event.target.parentNode.parentNode.querySelector('p');
+        p.classList.add('d-none');
+        let textarea = event.target.parentNode.parentNode.querySelector('textarea');
+        textarea.value = p.innerHTML;
+        textarea.classList.remove('d-none');
+      }
+
+      let textareas = document.querySelectorAll('textarea');
+      for (let i = 0; i < textareas.length; i++) {
+        textareas[i].addEventListener('blur', (event)=>{
+          let p = event.target.parentNode.querySelector('p');
+          p.innerHTML = event.target.value;
+          p.classList.remove('d-none');
+          event.target.classList.add('d-none');
+        })
+      }
+    </script>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      section{
+        background-color: gray;
+        padding: 5px;
+        margin-bottom: 10px;
+      }
+      button{
+        margin-right: 10px;
+        padding: 2px 5px;
+      }
+      .d-none{
+        display: none;
+      }
+      textarea{
+        width: 100%;
+      }
+    </style>
+  </body>
+</html>
