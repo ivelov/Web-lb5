@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <div style="display: flex">
+      <table id="tb1">
+        <tr>
+          <td id="t1" style="background-color: brown"></td>
+          <td id="t2" style="background-color: red"></td>
+          <td id="t3" style="background-color: orange"></td>
+        </tr>
+        <tr>
+          <td id="t4" style="background-color: yellow"></td>
+          <td id="t5" style="background-color: greenyellow"></td>
+          <td id="t6" style="background-color: green"></td>
+        </tr>
+        <tr>
+          <td id="t7" style="background-color: lightblue"></td>
+          <td id="t8" style="background-color: blue"></td>
+          <td id="t9" style="background-color: darkblue"></td>
+        </tr>
+      </table>
+      <table id="tb2">
+        <tr>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+    <script>
+      const colors = [
+        "brown",
+        "red",
+        "orange",
+        "yellow",
+        "greenyellow",
+        "green",
+        "lightblue",
+        "blue",
+        "darkblue",
+      ];
+      let activeColor = "";
+
+      function createTable() {
+        let tableHtml = "";
+        for (let i = 0; i < 10; i++) {
+          tableHtml += "<tr>";
+          for (let j = 0; j < 10; j++) {
+            tableHtml += "<td></td>";
+          }
+          tableHtml += "</tr>";
+        }
+        document.getElementById("tb2").innerHTML = tableHtml;
+      }
+
+      function getCallback(index) {
+        return (event) => {
+          activeColor = colors[index];
+          setActive(index);
+        };
+      }
+
+      function setActive(index) {
+        for (let i = 0; i < colorTds.length; i++) {
+          if (i === index) {
+            colorTds[i].classList.add("active");
+          } else {
+            colorTds[i].classList.remove("active");
+          }
+        }
+      }
+
+      const colorTds = document.getElementById("tb1").querySelectorAll("td");
+
+      for (let i = 0; i < colorTds.length; i++) {
+        colorTds[i].addEventListener("click", getCallback(i));
+      }
+
+      createTable();
+
+      const targetTds = document.getElementById("tb2").querySelectorAll("td");
+
+      for (let i = 0; i < targetTds.length; i++) {
+        targetTds[i].addEventListener("click", (event) => {
+          event.target.style.backgroundColor = activeColor;
+        });
+      }
+
+    </script>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      #tb1 td {
+        width: 50px;
+        height: 50px;
+      }
+      .active {
+        border: 3px solid black;
+      }
+      #tb2{
+        border-spacing: 0px;
+        border-collapse: collapse;
+      }
+      #tb2 td {
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+      }
+    </style>
+  </body>
+</html>
