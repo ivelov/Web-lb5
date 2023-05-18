@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Лаба 2</title>
+  </head>
+  <body>
+    <ol>
+      <li>Book1</li>
+      <li>Book2</li>
+      <li>Book3</li>
+      <li>Book4</li>
+      <li>Book5</li>
+      <li>Book6</li>
+    </ol>
+    <script>
+      function click(event) {
+        for (let j = 0; j < books.length; j++) {
+            books[j].classList.remove('active');
+          }
+          event.target.classList.add('active');
+      }
+
+      const books = document.querySelectorAll('li')
+
+      for (let i = 0; i < books.length; i++) {
+        books[i].addEventListener('click', click)
+      }
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      li{
+        width: max-content;
+      }
+      .active{
+        background-color: greenyellow;
+      }
+    </style>
+  </body>
+</html>
